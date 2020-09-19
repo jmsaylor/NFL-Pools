@@ -21,4 +21,16 @@ public class Game {
         this.away = away;
         this.date = date;
     }
+
+    public Team getHome() {
+        return home;
+    }
+
+    public Team getAway() {
+        return away;
+    }
+
+    public Instant getDate() {
+        return date;
+    }
 }
