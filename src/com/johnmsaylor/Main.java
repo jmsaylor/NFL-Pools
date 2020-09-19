@@ -1,18 +1,20 @@
 package com.johnmsaylor;
 
 import com.johnmsaylor.sportsradar.Test;
+import com.johnmsaylor.sportsradar.Utility;
 
-import java.util.concurrent.ExecutionException;
+import java.time.Instant;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            Test.request();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        String example = "2020-12-20T18:00:00+00:00";
+
+        Instant instant = Utility.formatDate(example);
+
+        System.out.println(instant);
     }
+
+
 }
