@@ -3,6 +3,8 @@ package com.johnmsaylor;
 import com.johnmsaylor.bet.BetTicket;
 import com.johnmsaylor.bet.InputInterface;
 import com.johnmsaylor.game.Game;
+import com.johnmsaylor.game.RegularSeason;
+import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.personnel.Team;
 
 import java.util.Scanner;
@@ -30,4 +32,21 @@ public class Console implements InputInterface {
         System.out.println("BET: " + bet.win + " to WIN");
         System.out.println("#######################");
     }
+
+    public static void showGame(Game game) {
+        System.out.print(game.getHome());
+        System.out.print(" vs. ");
+        System.out.print(game.getAway());
+        System.out.print(" @ ");
+        System.out.println(game.getDate());
+    }
+
+    public static void showSeason(RegularSeason season) {
+        for (RegularWeek week : season.season) {
+            for (Game game : week.games) {
+                Console.showGame(game);
+            }
+        }
+    }
+
 }

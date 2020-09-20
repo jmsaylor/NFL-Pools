@@ -30,7 +30,7 @@ public class Game {
         return away;
     }
 
-    public Instant getDate() {
-        return date;
+    public String getDate() {
+        return date.toString();
     }
 }
