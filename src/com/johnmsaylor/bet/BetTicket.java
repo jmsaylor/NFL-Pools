@@ -1,18 +1,24 @@
 package com.johnmsaylor.bet;
 
+import com.johnmsaylor.Console;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.personnel.Team;
+import com.johnmsaylor.user.User;
 
-public class BetTicket {
-    public Team win;
-    public Game game;
+import java.util.HashMap;
+import java.util.List;
 
-    public BetTicket(Game game) {
-        this.game = game;
+public abstract class BetTicket {
+    public HashMap<User, boolean> betMap;
+    public int amount;
+
+
+    public BetTicket(amount) {
+        this.amount = amount;
+
     }
 
-    public void setWin(InputInterface input) {
-        win = input.inputTeam(game);
+    public void bet(User user, boolean bet) {
+        
     }
-
 }

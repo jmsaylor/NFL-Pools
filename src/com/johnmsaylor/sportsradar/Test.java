@@ -61,7 +61,6 @@ public class Test {
                 var game = elem.getAsJsonObject();
                 JsonObject home = (JsonObject) game.get("home");
                 JsonObject away = (JsonObject) game.get("away");
-                System.out.println(home.get("name").getAsString().substring(0, 3) + " vs. " + away.get("name").getAsString().substring(0, 3));
                 String homeTeam = home.get("name").getAsString();
                 String awayTeam = away.get("name").getAsString();
                 if (!teams.containsKey(homeTeam)) {

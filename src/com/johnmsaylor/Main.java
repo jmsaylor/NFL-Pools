@@ -1,8 +1,10 @@
 package com.johnmsaylor;
 
 import com.johnmsaylor.game.RegularSeason;
+import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.sportsradar.Test;
 
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class Main {
@@ -17,6 +19,7 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Console.showSeason(season);
+
+
     }
 }

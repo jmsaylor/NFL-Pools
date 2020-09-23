@@ -9,11 +9,22 @@ import com.johnmsaylor.personnel.Team;
 
 import java.util.Scanner;
 
-public class Console implements InputInterface {
-    public Scanner scanner;
-    public int input;
+public class Console {
 
-    public Team inputTeam(Game game) {
+    public static void main(RegularSeason season) {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter week, or 0 to quit");
+            int selectWeek = scanner.nextInt();
+            if (selectWeek == 0) break;
+            RegularWeek week = season.season.get(selectWeek);
+            Console.showWeek(week);
+        }
+    }
+
+    public static Team inputTeam(Game game) {
+        Scanner scanner;
+        int input;
         while (true) {
             scanner = new Scanner(System.in);
             System.out.println("Choose your team - 1: " + game.getHome() + " Or 2: " + game.getAway());
@@ -27,10 +38,6 @@ public class Console implements InputInterface {
     }
 
     public static void showTicket(BetTicket bet) {
-        System.out.println("#######################");
-        System.out.println(bet.game.getAway() + " @ " + bet.game.getHome());
-        System.out.println("BET: " + bet.win + " to WIN");
-        System.out.println("#######################");
     }
 
     public static void showGame(Game game) {
@@ -39,6 +46,13 @@ public class Console implements InputInterface {
         System.out.print(game.getAway());
         System.out.print(" @ ");
         System.out.println(game.getDate());
+    }
+
+    public static void showWeek(RegularWeek week) {
+        System.out.println("REGULAR SEASON WEEK: " + week.sequence);
+        for (var game : week.games) {
+            showGame(game);
+        }
     }
 
     public static void showSeason(RegularSeason season) {
