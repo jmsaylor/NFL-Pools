@@ -2,7 +2,7 @@ package com.johnmsaylor.bet;
 
 import com.johnmsaylor.Console;
 import com.johnmsaylor.game.Game;
-import com.johnmsaylor.personnel.Team;
+import com.johnmsaylor.team.Team;
 
 import java.util.HashMap;
 import java.util.List;

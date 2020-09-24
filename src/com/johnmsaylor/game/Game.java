@@ -1,6 +1,6 @@
 package com.johnmsaylor.game;
 
-import com.johnmsaylor.personnel.Team;
+import com.johnmsaylor.team.Team;
 
 import java.time.Instant;
 
@@ -8,18 +8,14 @@ public class Game {
     public Team home;
     public Team away;
     public Instant date;
+    public int reference;
 
-    public Game(Team home, Team away, String date) {
-        this.home = home;
-        this.away = away;
-        this.date = Instant.parse(date);
-
-    }
-
-    public Game(Team home, Team away, Instant date) {
+    public Game(Team home, Team away, Instant date, int reference) {
+        this.reference = reference;
         this.home = home;
         this.away = away;
         this.date = date;
+
     }
 
     public Team getHome() {
@@ -33,4 +29,5 @@ public class Game {
     public String getDate() {
         return date.toString();
     }
+
 }

@@ -4,7 +4,7 @@ import com.johnmsaylor.bet.Bet;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
-import com.johnmsaylor.personnel.Team;
+import com.johnmsaylor.team.Team;
 
 import java.util.Scanner;
 
@@ -40,11 +40,14 @@ public class Console {
     }
 
     public static void showGame(Game game) {
+        System.out.print(game.reference);
+        System.out.println("  " + Bet.isBettingOpen(game));
         System.out.print(game.getHome());
         System.out.print(" vs. ");
         System.out.print(game.getAway());
         System.out.print(" @ ");
         System.out.println(game.getDate());
+
     }
 
     public static void showWeek(RegularWeek week) {

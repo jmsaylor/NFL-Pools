@@ -14,6 +14,7 @@ public class Main {
 
         try {
             season = Test.parseSchedule(Test.getScheduleNFL());
+            Console.showSeason(season);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

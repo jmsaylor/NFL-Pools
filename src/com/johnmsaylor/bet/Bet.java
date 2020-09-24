@@ -1,7 +1,9 @@
 package com.johnmsaylor.bet;
 
+import com.johnmsaylor.game.Game;
 import com.johnmsaylor.user.User;
 
+import java.time.Instant;
 import java.util.HashMap;
 
 public abstract class Bet {
@@ -17,7 +19,7 @@ public abstract class Bet {
 
     }
 
-    public void bet(User user, boolean bet) {
-
+    public static boolean isBettingOpen(Game game) {
+        return Instant.now().isBefore(game.date);
     }
 }

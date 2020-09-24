@@ -1,4 +1,4 @@
-package com.johnmsaylor.personnel;
+package com.johnmsaylor.team;
 
 public class Team {
     public String name;

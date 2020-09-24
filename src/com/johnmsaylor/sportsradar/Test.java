@@ -4,11 +4,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.johnmsaylor.Console;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
-import com.johnmsaylor.personnel.Team;
+import com.johnmsaylor.team.Team;
 import com.johnmsaylor.security.Vault;
 
 import java.net.URI;
@@ -16,7 +15,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Test {
@@ -59,6 +57,8 @@ public class Test {
             RegularWeek regWeek = new RegularWeek(week.get("sequence").getAsInt());
             for (JsonElement elem : week.get("games").getAsJsonArray()) {
                 var game = elem.getAsJsonObject();
+                System.out.println(Schedule.isClosed(game));
+                int reference = game.get("reference").getAsInt();
                 JsonObject home = (JsonObject) game.get("home");
                 JsonObject away = (JsonObject) game.get("away");
                 String homeTeam = home.get("name").getAsString();
@@ -69,7 +69,7 @@ public class Test {
                 if (!teams.containsKey(awayTeam)) {
                     teams.put(awayTeam, new Team(awayTeam));
                 }
-                Game newGame = new Game(teams.get(homeTeam), teams.get(awayTeam),Utility.formatDate(game.get("scheduled").getAsString()));
+                Game newGame = new Game(teams.get(homeTeam), teams.get(awayTeam),Utility.formatDate(game.get("scheduled").getAsString()), reference);
                 regWeek.addGame(newGame);
             }
             season.addWeek(regWeek);
