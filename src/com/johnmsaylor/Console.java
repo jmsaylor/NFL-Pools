@@ -1,7 +1,6 @@
 package com.johnmsaylor;
 
-import com.johnmsaylor.bet.BetTicket;
-import com.johnmsaylor.bet.InputInterface;
+import com.johnmsaylor.bet.Bet;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
@@ -37,7 +36,7 @@ public class Console {
         return input == 1 ? game.home : game.away;
     }
 
-    public static void showTicket(BetTicket bet) {
+    public static void showTicket(Bet bet) {
     }
 
     public static void showGame(Game game) {
