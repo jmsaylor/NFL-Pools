@@ -29,6 +29,8 @@ public class Test {
         var responseFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         var response = responseFuture.get();
 
+        System.out.println(response.body());
+
         return response.body();
     }
 
@@ -75,5 +77,38 @@ public class Test {
             season.addWeek(regWeek);
         }
         return season;
+    }
+
+    public static void update(RegularSeason season) throws ExecutionException, InterruptedException {
+        HashMap<Integer, Game> references = new HashMap<>();
+
+        for (RegularWeek week : season.season) {
+            for (Game game : week.games) {
+                references.put(game.reference, game);
+            }
+        }
+
+        String jsonString = getScheduleNFL();
+
+        var json = JsonParser.parseString(jsonString).getAsJsonObject();
+
+        for (JsonElement elem : json.get("weeks").getAsJsonArray()) {
+            var week = elem.getAsJsonObject();
+            for (JsonElement game : week.get("games").getAsJsonArray()) {
+                var gameInfo = game.getAsJsonObject();
+                int gameReference = gameInfo.get("reference").getAsInt();
+                if (references.get(gameReference).isFinal) {
+                    continue;
+                } else if (gameInfo.get("status").getAsString().equals("closed")) {
+                    var scores = gameInfo.get("scoring").getAsJsonObject();
+                    var updatedGame = references.get(gameReference);
+                    updatedGame.homePoints = scores.get("home_points").getAsInt();
+                    updatedGame.awayPoints = scores.get("away_points").getAsInt();
+                    updatedGame.isFinal = true;
+                }
+            }
+        }
+
+        System.out.println(references);
     }
 }

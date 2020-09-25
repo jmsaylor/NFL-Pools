@@ -7,16 +7,11 @@ import java.time.Instant;
 import java.util.HashMap;
 
 public abstract class Bet {
-    public int maxTakers;
-    public HashMap<User, Boolean> betMap;
     public int betAmount;
 
 
-    public Bet(int betAmount, int maxTakers) {
+    public Bet(int betAmount) {
         this.betAmount = betAmount;
-        this.maxTakers = maxTakers;
-
-
     }
 
     public static boolean isBettingOpen(Game game) {

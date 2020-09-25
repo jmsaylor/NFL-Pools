@@ -9,6 +9,9 @@ public class Game {
     public Team away;
     public Instant date;
     public int reference;
+    public boolean isFinal = false;
+    public int homePoints;
+    public int awayPoints;
 
     public Game(Team home, Team away, Instant date, int reference) {
         this.reference = reference;

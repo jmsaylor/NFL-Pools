@@ -47,6 +47,12 @@ public class Console {
         System.out.print(game.getAway());
         System.out.print(" @ ");
         System.out.println(game.getDate());
+        if (game.isFinal) {
+            System.out.print("Final Score: ");
+            System.out.print(game.home.toString().substring(0,3) + ": " + game.homePoints);
+            System.out.print("/");
+            System.out.println(game.away.toString().substring(0,3) + ": " + game.awayPoints);
+        }
 
     }
 
