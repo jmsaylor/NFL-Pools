@@ -9,5 +9,7 @@ public class User {
     public String middleName;
     public LocalDate birthdate;
 
-
+    public User(String name) {
+        this.name = name;
+    }
 }

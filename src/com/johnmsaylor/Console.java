@@ -2,6 +2,7 @@ package com.johnmsaylor;
 
 import com.johnmsaylor.bet.Bet;
 import com.johnmsaylor.game.Game;
+import com.johnmsaylor.game.GameMap;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.team.Team;
@@ -36,12 +37,48 @@ public class Console {
         return input == 1 ? game.home : game.away;
     }
 
+    public static int chooseGame(RegularSeason season) {
+        var scanner = new Scanner(System.in);
+        int input;
+        while (true) {
+            System.out.print("Choose Week: ");
+            input = scanner.nextInt();
+            for (RegularWeek week : season.season) {
+                if (week.getSequence() == input) {
+                    for (Game game : week.games) {
+                        Console.showGame(game);
+                    }
+                }
+            }
+            System.out.print("Enter 4-digit game reference ID (or 0 to choose different week): ");
+            int refId = scanner.nextInt();
+            if (refId != 0)
+                return refId;
+        }
+
+    }
+
     public static void showTicket(Bet bet) {
+    }
+
+    public static Bet takeBet() {
+        var scanner = new Scanner(System.in);
+        System.out.println();
+
+        return null;
+    }
+
+    public static RegularWeek selectWeek(RegularSeason season) {
+        var scanner = new Scanner(System.in);
+        while (true) {
+
+            break;
+        }
+        return null;
     }
 
     public static void showGame(Game game) {
         System.out.print(game.reference);
-        System.out.println("  " + Bet.isBettingOpen(game));
         System.out.print(game.getHome());
         System.out.print(" vs. ");
         System.out.print(game.getAway());

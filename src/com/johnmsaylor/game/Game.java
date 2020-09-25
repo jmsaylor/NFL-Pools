@@ -33,4 +33,11 @@ public class Game {
         return date.toString();
     }
 
+    public int getHomePoints() {
+        return homePoints;
+    }
+
+    public int getAwayPoints() {
+        return awayPoints;
+    }
 }

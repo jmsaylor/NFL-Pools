@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
@@ -29,8 +30,6 @@ public class Test {
         var responseFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         var response = responseFuture.get();
 
-        System.out.println(response.body());
-
         return response.body();
     }
 
@@ -43,7 +42,7 @@ public class Test {
 
         var response = responseFuture.get();
 
-        System.out.println(response.body());
+        System.out.println(response);
     }
 
     public static RegularSeason parseSchedule(String json) {
@@ -59,7 +58,6 @@ public class Test {
             RegularWeek regWeek = new RegularWeek(week.get("sequence").getAsInt());
             for (JsonElement elem : week.get("games").getAsJsonArray()) {
                 var game = elem.getAsJsonObject();
-                System.out.println(Schedule.isClosed(game));
                 int reference = game.get("reference").getAsInt();
                 JsonObject home = (JsonObject) game.get("home");
                 JsonObject away = (JsonObject) game.get("away");
@@ -88,27 +86,32 @@ public class Test {
             }
         }
 
+
         String jsonString = getScheduleNFL();
+//        JsonReader reader = new JsonReader(jsonString);
+        try {
 
-        var json = JsonParser.parseString(jsonString).getAsJsonObject();
+            var json = JsonParser.parseString(jsonString).getAsJsonObject();
 
-        for (JsonElement elem : json.get("weeks").getAsJsonArray()) {
-            var week = elem.getAsJsonObject();
-            for (JsonElement game : week.get("games").getAsJsonArray()) {
-                var gameInfo = game.getAsJsonObject();
-                int gameReference = gameInfo.get("reference").getAsInt();
-                if (references.get(gameReference).isFinal) {
-                    continue;
-                } else if (gameInfo.get("status").getAsString().equals("closed")) {
-                    var scores = gameInfo.get("scoring").getAsJsonObject();
-                    var updatedGame = references.get(gameReference);
-                    updatedGame.homePoints = scores.get("home_points").getAsInt();
-                    updatedGame.awayPoints = scores.get("away_points").getAsInt();
-                    updatedGame.isFinal = true;
+            for (JsonElement elem : json.get("weeks").getAsJsonArray()) {
+                var week = elem.getAsJsonObject();
+                for (JsonElement game : week.get("games").getAsJsonArray()) {
+                    var gameInfo = game.getAsJsonObject();
+                    int gameReference = gameInfo.get("reference").getAsInt();
+                    if (references.get(gameReference).isFinal) {
+                        continue;
+                    } else if (gameInfo.get("status").getAsString().equals("closed")) {
+                        var scores = gameInfo.get("scoring").getAsJsonObject();
+                        var updatedGame = references.get(gameReference);
+                        updatedGame.homePoints = scores.get("home_points").getAsInt();
+                        updatedGame.awayPoints = scores.get("away_points").getAsInt();
+                        updatedGame.isFinal = true;
+                    }
                 }
             }
+        } catch (Exception exception) {
+            System.out.println(exception.toString());
         }
 
-        System.out.println(references);
     }
 }

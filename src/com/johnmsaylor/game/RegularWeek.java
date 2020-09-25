@@ -12,6 +12,10 @@ public class RegularWeek {
         this.games = new ArrayList<>();
     }
 
+    public int getSequence() {
+        return sequence;
+    }
+
     public void addGame(Game game) {
         games.add(game);
     }
