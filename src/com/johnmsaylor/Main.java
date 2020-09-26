@@ -36,8 +36,15 @@ public class Main {
         Condition condition = new Win(games.map.get(refId), Console.inputTeam(games.map.get(refId)));
         Bet bet = new Bet(40, condition);
         String betId = bet.placeBet(john, true);
+
+        try {
+            Test.update(season);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println(bet.isWinner(betId));
-
-
     }
 }

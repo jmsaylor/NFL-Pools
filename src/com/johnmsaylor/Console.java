@@ -1,8 +1,6 @@
 package com.johnmsaylor;
 
-import com.johnmsaylor.bet.Bet;
 import com.johnmsaylor.game.Game;
-import com.johnmsaylor.game.GameMap;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.team.Team;
@@ -11,7 +9,7 @@ import java.util.Scanner;
 
 public class Console {
 
-    public static void main(RegularSeason season) {
+    public static void browseGames(RegularSeason season) {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter week, or 0 to quit");
@@ -27,7 +25,7 @@ public class Console {
         int input;
         while (true) {
             scanner = new Scanner(System.in);
-            System.out.println("Choose your team - 1: " + game.getHome() + " Or 2: " + game.getAway());
+            System.out.println("Choose your team: 1) " + game.getHome() + " Or 2) " + game.getAway());
             input = scanner.nextInt();
             if (input == 1 | input == 2) {
                 break;
@@ -57,25 +55,25 @@ public class Console {
         }
 
     }
-
-    public static void showTicket(Bet bet) {
-    }
-
-    public static Bet takeBet() {
-        var scanner = new Scanner(System.in);
-        System.out.println();
-
-        return null;
-    }
-
-    public static RegularWeek selectWeek(RegularSeason season) {
-        var scanner = new Scanner(System.in);
-        while (true) {
-
-            break;
-        }
-        return null;
-    }
+//
+//    public static void showTicket(Bet bet) {
+//    }
+//
+//    public static Bet takeBet() {
+//        var scanner = new Scanner(System.in);
+//        System.out.println();
+//
+//        return null;
+//    }
+//
+//    public static RegularWeek selectWeek(RegularSeason season) {
+//        var scanner = new Scanner(System.in);
+//        while (true) {
+//
+//            break;
+//        }
+//        return null;
+//    }
 
     public static void showGame(Game game) {
         System.out.print(game.reference);
