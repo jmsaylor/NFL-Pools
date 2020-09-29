@@ -58,7 +58,6 @@ public class Test {
             RegularWeek regWeek = new RegularWeek(week.get("sequence").getAsInt());
             for (JsonElement elem : week.get("games").getAsJsonArray()) {
                 var game = elem.getAsJsonObject();
-                int reference = game.get("reference").getAsInt();
                 JsonObject home = (JsonObject) game.get("home");
                 JsonObject away = (JsonObject) game.get("away");
                 String homeTeam = home.get("name").getAsString();
@@ -69,7 +68,9 @@ public class Test {
                 if (!teams.containsKey(awayTeam)) {
                     teams.put(awayTeam, new Team(awayTeam));
                 }
-                Game newGame = new Game(teams.get(homeTeam), teams.get(awayTeam),Utility.formatDate(game.get("scheduled").getAsString()), reference);
+                Game newGame = new Game(teams.get(homeTeam), teams.get(awayTeam),Utility.formatDate(game.get("scheduled").getAsString()));
+                newGame.setId(game.get("id").getAsString());
+                newGame.setReference(game.get("reference").getAsInt());
                 regWeek.addGame(newGame);
             }
             season.addWeek(regWeek);
@@ -85,7 +86,6 @@ public class Test {
                 references.put(game.reference, game);
             }
         }
-
 
         String jsonString = getScheduleNFL();
 //        JsonReader reader = new JsonReader(jsonString);

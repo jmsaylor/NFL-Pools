@@ -76,7 +76,7 @@ public class Console {
 //    }
 
     public static void showGame(Game game) {
-        System.out.print(game.reference);
+        System.out.print(game.reference + " - " + game.id);
         System.out.print(game.getHome());
         System.out.print(" vs. ");
         System.out.print(game.getAway());

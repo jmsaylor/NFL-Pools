@@ -5,6 +5,7 @@ import com.johnmsaylor.team.Team;
 import java.time.Instant;
 
 public class Game {
+    public String id;
     public Team home;
     public Team away;
     public Instant date;
@@ -13,8 +14,7 @@ public class Game {
     public int homePoints;
     public int awayPoints;
 
-    public Game(Team home, Team away, Instant date, int reference) {
-        this.reference = reference;
+    public Game(Team home, Team away, Instant date) {
         this.home = home;
         this.away = away;
         this.date = date;
@@ -39,5 +39,13 @@ public class Game {
 
     public int getAwayPoints() {
         return awayPoints;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setReference(int reference) {
+        this.reference = reference;
     }
 }
