@@ -31,21 +31,23 @@ public class GamePlayerStats {
     }
 
 
-    public static void getStatistics(String json) {
+    public static JsonObject getStatistics(String json) {
         JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-        var stats = jsonObject.get("statistics").getAsJsonObject().get("home").getAsJsonObject();
-        for (var stat : stats.keySet().toArray()) {
-            if (!stats.get((String) stat).isJsonObject())
-                continue;
-            System.out.println(stat);
-            var keys = stats.get((String) stat);
-            System.out.println(keys.toString());
-        }
-
-
+        return jsonObject.get("statistics").getAsJsonObject();
     }
 
+    public static void show(String json, String homeAway, String type) {
+       var stats = getStatistics(json);
+        String keys = stats.get("home").getAsJsonObject().keySet().toString();
+        System.out.println(keys);
+       for (var stat : stats.keySet().toArray()) {
+           var players = stats.get(homeAway).getAsJsonObject().get(type).getAsJsonObject().get("players").getAsJsonArray();
+            for (var player : players) {
+                System.out.println(player.toString());
+            }
+       }
 
+    }
 //    public static void getPlayers(JsonObject statistics) {
 //        var stats = statistics.get("home").getAsJsonObject();
 //        System.out.println(stats.toString());

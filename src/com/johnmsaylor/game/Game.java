@@ -6,19 +6,19 @@ import java.time.Instant;
 
 public class Game {
     public String id;
+    public int reference;
     public Team home;
     public Team away;
     public Instant date;
-    public int reference;
     public boolean isFinal = false;
     public int homePoints;
     public int awayPoints;
+    public String gameStatsJSON;
 
     public Game(Team home, Team away, Instant date) {
         this.home = home;
         this.away = away;
         this.date = date;
-
     }
 
     public Team getHome() {
@@ -47,5 +47,13 @@ public class Game {
 
     public void setReference(int reference) {
         this.reference = reference;
+    }
+
+    public String getGameStatsJSON() {
+        return gameStatsJSON;
+    }
+
+    public void setGameStatsJSON(String gameStatsJSON) {
+        this.gameStatsJSON = gameStatsJSON;
     }
 }

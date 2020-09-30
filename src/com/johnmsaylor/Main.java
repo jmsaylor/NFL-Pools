@@ -27,7 +27,7 @@ public class Main {
             String json = GamePlayerStats.getGamePlayerStats();
             System.out.println(json);
 
-           GamePlayerStats.getStatistics(json);
+           GamePlayerStats.show(json);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
