@@ -1,9 +1,7 @@
 package com.johnmsaylor.sportsradar;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 import com.johnmsaylor.player.Player;
 import com.johnmsaylor.security.Vault;
 
@@ -18,6 +16,7 @@ public class GamePlayerStats {
 
     private static HttpClient client = HttpClient.newHttpClient();
     public static String gameID = "de740b16-4d86-4a04-afd0-61b3092799e1";
+
     public static String getGamePlayerStats() throws ExecutionException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -37,15 +36,42 @@ public class GamePlayerStats {
     }
 
     public static void show(String json, String homeAway, String type) {
-       var stats = getStatistics(json);
+        var stats = getStatistics(json);
         String keys = stats.get("home").getAsJsonObject().keySet().toString();
         System.out.println(keys);
-       for (var stat : stats.keySet().toArray()) {
-           var players = stats.get(homeAway).getAsJsonObject().get(type).getAsJsonObject().get("players").getAsJsonArray();
+        for (var stat : stats.keySet().toArray()) {
+            var players = stats.get(homeAway).getAsJsonObject().get(type).getAsJsonObject().get("players").getAsJsonArray();
             for (var player : players) {
                 System.out.println(player.toString());
             }
-       }
+        }
+    }
+       public static void show(){
+            String rawJSON;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            try {
+                rawJSON = getGamePlayerStats();
+                String prettyJSON = gson.toJson(JsonParser.parseString(rawJSON));
+                System.out.println(prettyJSON);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static void test() {
+            String rawJSON;
+            Gson gson = new GsonBuilder().create();
+
+            try {
+                rawJSON = getGamePlayerStats();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 //    public static void getPlayers(JsonObject statistics) {
@@ -61,4 +87,4 @@ public class GamePlayerStats {
 //        }
 //    }
 
-}
+

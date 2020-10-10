@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 public class Main {
 
     public static RegularSeason season;
-
+    public static String json;
     public static void main(String[] args) {
 
 //        try {
@@ -23,16 +23,7 @@ public class Main {
 //
 //        Console.showSeason(season);
 
-        try {
-            String json = GamePlayerStats.getGamePlayerStats();
-            System.out.println(json);
-
-           GamePlayerStats.show(json);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        GamePlayerStats.show();
 
     }
 

@@ -11,7 +11,7 @@ public class Pick4Bet {
     public HashMap<Game, Team> bets = new HashMap<>();
 
     public Pick4Bet(List<Game> games) {
-        for (var game : games) {
+        for (Game game : games) {
             this.bets.put(game, Console.inputTeam(game));
         }
     }
