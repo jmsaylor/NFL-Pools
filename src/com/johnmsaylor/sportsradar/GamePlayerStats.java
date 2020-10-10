@@ -18,6 +18,7 @@ public class GamePlayerStats {
 
     private static HttpClient client = HttpClient.newHttpClient();
     public static String gameID = "de740b16-4d86-4a04-afd0-61b3092799e1";
+
     public static String getGamePlayerStats() throws ExecutionException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -33,6 +34,7 @@ public class GamePlayerStats {
 
     public static JsonObject getStatistics(String json) {
         JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+        System.out.println(jsonObject.keySet().toString());
         return jsonObject.get("statistics").getAsJsonObject();
     }
 
@@ -40,7 +42,6 @@ public class GamePlayerStats {
        var stats = getStatistics(json);
         String keys = stats.get("home").getAsJsonObject().keySet().toString();
         System.out.println(keys);
-       for (var stat : stats.keySet().toArray()) {
            var players = stats.get(homeAway).getAsJsonObject().get(type).getAsJsonObject().get("players").getAsJsonArray();
             for (var player : players) {
                 System.out.println(player.toString());
@@ -61,4 +62,4 @@ public class GamePlayerStats {
 //        }
 //    }
 
-}
+

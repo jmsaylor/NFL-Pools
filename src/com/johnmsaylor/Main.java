@@ -2,6 +2,7 @@ package com.johnmsaylor;
 
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.sportsradar.GamePlayerStats;
+import com.johnmsaylor.sportsradar.JDocTest;
 import com.johnmsaylor.sportsradar.Test;
 
 import java.util.concurrent.ExecutionException;
@@ -23,16 +24,7 @@ public class Main {
 //
 //        Console.showSeason(season);
 
-        try {
-            String json = GamePlayerStats.getGamePlayerStats();
-            System.out.println(json);
-
-           GamePlayerStats.show(json);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            JDocTest.showJson();
 
     }
 
