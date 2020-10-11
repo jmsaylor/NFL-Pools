@@ -1,44 +1,37 @@
 package com.johnmsaylor.player;
 
 public abstract class OffensivePlayer extends Player {
-    private int touchDowns;
-    private int totalYards;
-    private int longestPlay;
-    private int longestTouchDown;
+    private int touchdowns;
+    private int yards;
+    private int longest;
+    private int longest_touchdown;
+    public int redzone_attempts;
+    public int tlost_yards;
 
-    public OffensivePlayer(String name, int number, String id) {
-        super(name, number, id);
+    public OffensivePlayer() {};
+
+    public int getTouchdowns() {
+        return touchdowns;
     }
 
-    public int getTouchDowns() {
-        return touchDowns;
+    public int getYards() {
+        return yards;
     }
 
-    public void setTouchDowns(int touchDowns) {
-        this.touchDowns = touchDowns;
+    public int getLongest() {
+        return longest;
     }
 
-    public int getTotalYards() {
-        return totalYards;
+    public int getLongest_touchdown() {
+        return longest_touchdown;
     }
 
-    public void setTotalYards(int totalYards) {
-        this.totalYards = totalYards;
+    public int getRedzone_attempts() {
+        return redzone_attempts;
     }
 
-    public int getLongestPlay() {
-        return longestPlay;
-    }
-
-    public void setLongestPlay(int longestPlay) {
-        this.longestPlay = longestPlay;
-    }
-
-    public int getLongestTouchDown() {
-        return longestTouchDown;
-    }
-
-    public void setLongestTouchDown(int longestTouchDown) {
-        this.longestTouchDown = longestTouchDown;
+    public int getTlost_yards() {
+        return tlost_yards;
     }
 }
+

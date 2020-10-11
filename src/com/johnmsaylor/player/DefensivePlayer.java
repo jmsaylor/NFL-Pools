@@ -5,6 +5,8 @@ public abstract class DefensivePlayer extends Player {
     private int interceptions;
     private int tackles;
 
+    public DefensivePlayer(){};
+
     public DefensivePlayer(String name, int number, String id) {
         super(name, number, id);
     }

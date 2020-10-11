@@ -3,7 +3,7 @@ package com.johnmsaylor;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
-import com.johnmsaylor.team.Team;
+import com.johnmsaylor.player.Team;
 
 import java.util.Scanner;
 
@@ -14,7 +14,8 @@ public class Console {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter week, or 0 to quit");
             int selectWeek = scanner.nextInt();
-            if (selectWeek == 0) break;
+            if (selectWeek == 0)
+                break;
             RegularWeek week = season.season.get(selectWeek);
             Console.showWeek(week);
         }

@@ -1,6 +1,6 @@
 package com.johnmsaylor.game;
 
-import com.johnmsaylor.team.Team;
+import com.johnmsaylor.player.Team;
 
 import java.time.Instant;
 
@@ -49,11 +49,7 @@ public class Game {
         this.reference = reference;
     }
 
-    public String getGameStatsJSON() {
-        return gameStatsJSON;
-    }
-
-    public void setGameStatsJSON(String gameStatsJSON) {
-        this.gameStatsJSON = gameStatsJSON;
+    public void updateGameStats(){
+        UpdateInterface
     }
 }

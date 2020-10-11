@@ -2,6 +2,7 @@ package com.johnmsaylor.sportsradar;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
+import com.johnmsaylor.game.UpdateInterface;
 import com.johnmsaylor.player.Player;
 import com.johnmsaylor.security.Vault;
 
@@ -12,13 +13,23 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class GamePlayerStats {
+public class GamePlayerStats extends BaseAPI implements UpdateInterface {
 
     private static HttpClient client = HttpClient.newHttpClient();
     public static String gameID = "de740b16-4d86-4a04-afd0-61b3092799e1";
 
     public static String getGamePlayerStats() throws ExecutionException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.sportradar.us/nfl/official/trial/v6/en/games/" + gameID + "/statistics.json?api_key=" + Vault.getKeySportsRadar()))
+                .header("accept", "application/json")
+                .build();
+        var responseFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        var response = responseFuture.get();
 
+        return response.body();
+    }
+
+    public static String getGamePlayerStats(String gameID) throws ExecutionException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://api.sportradar.us/nfl/official/trial/v6/en/games/" + gameID + "/statistics.json?api_key=" + Vault.getKeySportsRadar()))
                 .header("accept", "application/json")

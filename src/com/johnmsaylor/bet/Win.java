@@ -1,7 +1,7 @@
 package com.johnmsaylor.bet;
 
 import com.johnmsaylor.game.Game;
-import com.johnmsaylor.team.Team;
+import com.johnmsaylor.player.Team;
 
 import java.time.Instant;
 
