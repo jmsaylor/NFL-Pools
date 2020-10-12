@@ -1,9 +1,14 @@
 package com.johnmsaylor;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.player.Team;
+import com.johnmsaylor.stats.Summary;
 
 import java.util.Scanner;
 
@@ -107,4 +112,27 @@ public class Console {
         }
     }
 
+    public static void showJSON(String rawJSON) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJSON = gson.toJson(JsonParser.parseString(rawJSON));
+        System.out.println(prettyJSON);
+    }
+
+    public static void showJSON(JsonObject jsonObject) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJSON = gson.toJson(jsonObject);
+        System.out.println(prettyJSON);
+    }
+
+    public static void showKeysJSON(JsonObject jsonObject) {
+        for (String key : jsonObject.keySet()){
+            System.out.println(key);
+        }
+    }
+
+    public static void testToJSON(Summary summary){
+        Gson gson = new GsonBuilder().create();
+        String json = gson.toJson(summary);
+        System.out.println(json);
+    }
 }

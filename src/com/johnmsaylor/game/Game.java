@@ -49,7 +49,29 @@ public class Game {
         this.reference = reference;
     }
 
-    public void updateGameStats(){
-        UpdateInterface
-    }
 }
+//    id
+//            name
+//    market
+//            alias
+//    reference
+//            sr_id
+//    summary
+//            rushing
+//    receiving
+//            punts
+//    punt_returns
+//            penalties
+//    passing
+//            misc_returns
+//    kickoffs
+//            kick_returns
+//    int_returns
+//            fumbles
+//    field_goals
+//            extra_points
+//    defense
+//            efficiency
+//    first_downs
+//            interceptions
+//touchdowns

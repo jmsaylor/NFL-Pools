@@ -1,30 +1,15 @@
 package com.johnmsaylor;
 
 import com.johnmsaylor.game.RegularSeason;
-import com.johnmsaylor.sportsradar.GamePlayerStats;
-import com.johnmsaylor.sportsradar.Test;
-
-import java.util.concurrent.ExecutionException;
+import com.johnmsaylor.sportsradar.GameStats;
 
 public class Main {
 
-    public static RegularSeason season;
-    public static String json;
     public static void main(String[] args) {
 
-//        try {
-//            season = Test.parseSchedule(Test.getScheduleNFL());
-////            System.out.println(Test.getScheduleNFL());
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Console.showSeason(season);
-
-        GamePlayerStats.show();
-
+        GameStats gameStats = new GameStats("de740b16-4d86-4a04-afd0-61b3092799e1");
+//        Console.showJSON(gameStats.getAwayStats());
+        Console.testToJSON(gameStats.getHomeSummary());
     }
 
 }
