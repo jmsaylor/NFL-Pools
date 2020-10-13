@@ -8,8 +8,6 @@ public abstract class OffensivePlayer extends Player {
     public int redzone_attempts;
     public int tlost_yards;
 
-    public OffensivePlayer() {};
-
     public int getTouchdowns() {
         return touchdowns;
     }

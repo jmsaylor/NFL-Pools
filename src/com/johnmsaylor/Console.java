@@ -8,7 +8,7 @@ import com.johnmsaylor.game.Game;
 import com.johnmsaylor.game.RegularSeason;
 import com.johnmsaylor.game.RegularWeek;
 import com.johnmsaylor.player.Team;
-import com.johnmsaylor.stats.Summary;
+import com.johnmsaylor.stats.TeamGameSummary;
 
 import java.util.Scanner;
 
@@ -130,7 +130,7 @@ public class Console {
         }
     }
 
-    public static void testToJSON(Summary summary){
+    public static void testToJSON(Object summary){
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(summary);
         System.out.println(json);

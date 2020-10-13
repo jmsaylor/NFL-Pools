@@ -1,18 +1,13 @@
 package com.johnmsaylor.sportsradar;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
+import com.johnmsaylor.Console;
 import com.johnmsaylor.game.UpdateInterface;
-import com.johnmsaylor.player.Player;
-import com.johnmsaylor.security.Vault;
-import com.johnmsaylor.stats.Summary;
+import com.johnmsaylor.player.Quarterback;
+import com.johnmsaylor.stats.TeamGameSummary;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class GameStats extends BaseAPI implements UpdateInterface {
     private String gameID;
@@ -36,10 +31,30 @@ public class GameStats extends BaseAPI implements UpdateInterface {
         return getStatistics().get("away").getAsJsonObject();
     }
 
-    public Summary getHomeSummary() {
+    public TeamGameSummary getAwaySummary() {
+        Gson gson = new GsonBuilder().create();
+        JsonObject jsonObject = getAwayStats().get("summary").getAsJsonObject();
+        return gson.fromJson(jsonObject, TeamGameSummary.class);
+    }
+
+    public TeamGameSummary getHomeSummary() {
         Gson gson = new GsonBuilder().create();
         JsonObject jsonObject = getHomeStats().get("summary").getAsJsonObject();
-        return gson.fromJson(jsonObject, Summary.class);
+        return gson.fromJson(jsonObject, TeamGameSummary.class);
+    }
+
+    public JsonObject getHomePassingStats(){
+        return getHomeStats().get("passing").getAsJsonObject();
+    }
+
+    public List<Quarterback> getQuarterbackPassingStats() {
+        Gson gson = new GsonBuilder().create();
+        var quarterbacks = new ArrayList<Quarterback>();
+
+        for (var quarterback : getHomePassingStats().get("players").getAsJsonArray()){
+            quarterbacks.add(gson.fromJson(quarterback.getAsJsonObject(), Quarterback.class));
+        }
+        return quarterbacks;
     }
 
 
